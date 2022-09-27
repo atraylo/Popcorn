@@ -28,11 +28,11 @@
 
 			<?php } ?>
             
-            <div class="mb-3">
+            <div class="form-inp">
                 <label for="user" class="form-label">Username</label>
                 <input name="user" type="text" placeholder="Enter username" required />
             </div>
-            <div class="mb-3">
+            <div class="form-inp">
                 <label for="pwd" class="form-label">Password</label>
                 <input name="pwd" type="password" placeholder="Enter password" required />
             </div>
