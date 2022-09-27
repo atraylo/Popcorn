@@ -1,14 +1,10 @@
-<!DOCTYPE html>
 <html>
-
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Popcorn!: The movie referral site.</title>
     <link href= "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel= "stylesheet">
-    <link rel= "stylesheet" type="text/css" href="css/index_style.css">
 </head>
-
-
 <body class="d-flex
             justify-content-center
             align-items-center
@@ -16,13 +12,22 @@
             flex-column">
     <h1>Popcorn!</h1>
     <div class="w-400 p-5 shadow rounded">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-        <div class="d-flex
+        <form method="POST" action="include_files/sign_in.php">
+            <div class="d-flex
                     justify-content-center
                     align-items-center
                     flex-column">
-            <h3 class="display-4 fs-1 text-center"> SIGN IN </h3>
+                <h3 class="display-4 fs-1 text-center"> SIGN IN </h3>
             </div>
+
+            <?php if (isset($_GET['error'])) { ?>
+
+	 		<div class="alert alert-warning" role="alert">
+			    <?php echo htmlspecialchars($_GET['error']);?>
+			</div>
+
+			<?php } ?>
+            
             <div class="mb-3">
                 <label for="user" class="form-label">Username</label>
                 <input name="user" type="text" placeholder="Enter username" required />
@@ -37,12 +42,6 @@
             <!--/div-->
             <a href="pages/create_account.php">Create an account here!</a>
         </form>
-        
-        <?php include 'include_files/sign_in.php'?>
     </div>
-
-    
-
 </body>
-
 </html>
