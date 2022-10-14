@@ -59,9 +59,11 @@ def create_movie_profile(movie_dataset):
     dataset = movie_dataset["tags"].values
 
     from gensim.corpora import Dictionary
-    
-    dct = Dictionary(dataset)    
+    #Build a word bag according to the data set, count the word frequency, put all words into a dictionary, and use the index to obtain
+    dct = Dictionary(dataset)
+    #According to each piece of data, return the corresponding word index and word frequency
     corpus = [dct.doc2bow(line) for line in dataset]
+    #Train the TF-IDF model, that is, calculate the TF-IDF value
     model = TfidfModel(corpus)
 
     _movie_profile = []
@@ -74,6 +76,7 @@ def create_movie_profile(movie_dataset):
         topN_tags_weights = dict(map(lambda x: (dct[x[0]], x[1]), movie_tags))
         
         for g in genres:
+            #Add the category words and set the weight value to 1.0
             topN_tags_weights[g] = 1.0
         topN_tags = [i[0] for i in topN_tags_weights.items()]
         _movie_profile.append((mid, title, topN_tags, topN_tags_weights))
@@ -87,6 +90,9 @@ movie_dataset = get_movie_dataset()
 
 movie_profile = create_movie_profile(movie_dataset)
 
+# Go to the inverted_table dict and use the tag as the key to get the value. If it can't get it, return []
+# # Put the id and weight of the movie into a tuple and add it to the list
+# # Set the modified value back
 
 def create_inverted_table(movie_profile):
     inverted_table = {}
@@ -105,7 +111,12 @@ inverted_table = create_inverted_table(movie_profile)
 
 # In[5]:
 
-
+# """
+# User portrait construction steps:
+#
+# According to the user's rating history, combined with the item portrait, the portrait label of the movie with the movie viewing record is used as the initial label to hit the user back
+# Calculate the weight value of each initial label of the user by counting the number of times the user watched the label, and select TOP-N as the user's final portrait label after sorting.
+# """
 def create_user_profile():
     watch_record = pd.read_csv("ratings.csv", usecols=range(2),
                   dtype={"userId": np.int32, "movieId": np.int32})
@@ -117,6 +128,9 @@ def create_user_profile():
     movie_profile = create_movie_profile(movie_dataset)
 
     user_profile = {}
+    # Get the top 50 words with the most occurrences
+    # # Take out the number of occurrences of the word with the most occurrences
+    # # Use the number of times to calculate the weight The weight of the word with the most occurrence is 1
     for uid, mids in watch_record.itertuples():
         record_movie_prifole = movie_profile.loc[list(mids)]
         counter = collections.Counter(reduce(lambda x, y: list(x) + list(y), record_movie_prifole["profile"].values))      
@@ -169,30 +183,22 @@ for uid, interest_words in user_profile.items():
 
 
 import gensim
+#Train word vectors to find the closest words to a word
 sentence =list(movie_profile['profile'].values)
 model =gensim.models.Word2Vec(sentence,window=3,min_count=1,epochs=20)
+model.wv.most_similar(positive=['action'],topn=10) #you can change keyword here，topn mean top of the movies
 
 
-# In[8]:
-
-
-model.wv.most_similar(positive=['action'],topn=10) #you can change keyword here
-
-
-# In[ ]:
-
-
-
-
-
-# In[9]:
 
 
 from gensim.models.doc2vec import Doc2Vec,TaggedDocument
+
+# Train the model and save Doc2Vec to represent an article through a vector, and an article corresponds to a movie
+# The similarity of training, which represents the similarity of the movie
 documents = [TaggedDocument([movieId],tags) for movieId,tags in movie_profile["profile"].iteritems()]
 
 
-# In[10]:
+
 
 
 from gensim.models.doc2vec import Doc2Vec,TaggedDocument
@@ -201,8 +207,9 @@ model = Doc2Vec(documents, vector_size=100, window=3, min_count=1, workers=4, ep
 
 
 # In[11]:
-
-
+#-----------------------------test   part--------------------------
+#input  tags for movie 6
 words = movie_profile["profile"].loc[6]
-words
-
+inferred_vector = model.infer_vector(words)
+#Find the most detailed n vectors of incoming vectors through doc2vecs, each vector representing a movie
+sims = model.docvecs.most_similar([inferred_vector], topn=10)
