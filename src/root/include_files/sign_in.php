@@ -26,10 +26,10 @@ if (isset($_POST['user']) && isset($_POST['pwd'])) {
 
             #Uncomment line below when used on actual site and comment line with header after.
             
-            header("Location:https://pop-corn.azurewebsites.net/pages/main_page.php");
+            #header("Location:https://pop-corn.azurewebsites.net/pages/homepage.html");
             
             #Uncomment line below when using XAMPP during development
-            #header("Location:http://localhost/root/pages/main_page.php");
+            header("Location:http://localhost/root/pages/PopcornProject/homepage.html");
         } else {
             $em = "Your passsword is incorrect..";
 
