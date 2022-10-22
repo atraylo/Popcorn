@@ -1,47 +1,47 @@
-<html>
+<!DOCTYPE html>
+
 <head>
-    <meta charset="UTF-8">
+    <title>Welcome to Popcorn!</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Popcorn!: The movie referral site.</title>
-    <link href= "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel= "stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
 </head>
-<body class="d-flex
-            justify-content-center
-            align-items-center
-            vh-100
-            flex-column">
-    <h1>Popcorn!</h1>
-    <div class="w-400 p-5 shadow rounded">
-        <form method="POST" action="include_files/sign_in.php">
-            <div class="d-flex
-                    justify-content-center
-                    align-items-center
-                    flex-column">
-                <h3 class="display-4 fs-1 text-center"> SIGN IN </h3>
-            </div>
 
-            <?php if (isset($_GET['error'])) { ?>
-
-	 		<div class="alert alert-warning" role="alert">
-			    <?php echo htmlspecialchars($_GET['error']);?>
-			</div>
-
-			<?php } ?>
-            
-            <div class="form-inp">
-                <label for="user" class="form-label">Username</label>
-                <input name="user" type="text" placeholder="Enter username" required />
+<body>
+    <!-- Navigation Bar / Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a id="Popcorn!" href="#">Popcorn!</a>
+            <div class="d-flex align-items-center">
+                <form action="pages/sign_in_page.php">
+                    <button id="sign_in">Sign in</button>
+                </form>
+                <form action="pages/create_account.php">
+                    <button id="create_acc">Create an Account!</button>
+                </form>
             </div>
-            <div class="form-inp">
-                <label for="pwd" class="form-label">Password</label>
-                <input name="pwd" type="password" placeholder="Enter password" required />
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <!--div class="container"-->
-                <!--span class="pwd"> <a href="pages/forgot_pwd.php"> Forgot password?</a></span-->
-            <!--/div-->
-            <a href="pages/create_account.php">Create an account here!</a>
-        </form>
-    </div>
+        </div>
+    </nav>
+    <!-- Navigation Bar / Header -->
+
+    <img id="logo" src="images/popcorn_logo.jfif">
+    <h1 class="w3-center">Welcome to Popcorn!</h1>
+    <h3>
+        Popcorn is a website that allows you to keep track of movies you either want to or
+        have already watched across many popular streaming services such as HBO max, Disney+
+        and Netflix! If you are already familiar with our site, just click the sign in button.
+        Otherwise, create an acccount and get started! Both buttons are in the top right corner
+        of this page.
+    </h3>
+
+
 </body>
+
 </html>
