@@ -2,19 +2,32 @@
 <html>
 
 <head>
-    <title>Create Account</title>
+    <title> Create Account</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 
-<body>
+<body class="d-flex
+            justify-content-center
+            align-items-center
+            vh-100
+            flex-column">
     <h1>Create Your Account</h1>
     <p>Enter your email, then create a username and password. Then you will be redirected to the sign in page.</p>
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <?php if (isset($_GET['error'])) { ?>
+
+        <div class="alert alert-warning" role="alert">
+            <?php echo htmlspecialchars($_GET['error']); ?>
+        </div>
+
+    <?php } ?>
+
+    <form action="../include_files/acc_create.php" method="POST">
         <div class="form-group">
             <label for="email">Email:</label>
             <input class="form-control" name="email" type="email" placeholder="Enter email" required />
@@ -31,34 +44,8 @@
             <input type="submit" value="Create Account" name="Submit">
         </div>
     </form>
-    <p>Already have an account? <a href="../index.php">sign in here!</a></p>
-
-    <?php
-    require("../include_files/DBConn.php");
-
-        if(isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['email'])){
-
-            $username = $_POST['user'];
-            $pass_word = $_POST['pwd'];
-            $email = $_POST['email'];
-
-            try {
-                $sth = $dbh->prepare('INSERT INTO user_info (username,pass_word,email) VALUES (?,?,?)');
-                $sth->execute(array($username, $pass_word, $email));
-
-                #Uncomment line below when used on actual site and comment line with header after.
-                header("Location:https://pop-corn.azurewebsites.net/pages/profile_gen.php");
-
-                #Uncomment line below when using XAMPP during development
-                #header("Location:http://localhost/root/pages/profile_gen.php");
-
-            } catch (PDOException $e) {
-                echo "This user already exists! Try signing in..";
-            }
-
-        }
-    ?>
-
+    
+    <p>Already have an account? <a href="sign_in_page.php">sign in here!</a></p>
 </body>
 
 </html>

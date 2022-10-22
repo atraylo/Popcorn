@@ -11,19 +11,23 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#subBtn').click(function() {
-            checked = $("input[type=checkbox]:checked").length;
 
-            if(checked < 3) {
-                alert("You must check at least three checkbox.");
-                return false;
+            $("input[type=checkbox]").change(function() {
+            checked = $("input[type=checkbox]:checked").length;
+            
+            if(checked => 3){
+                $('#subBtn').prop("disabled", false);
+            }
+            if(checked < 3){
+                $('#subBtn').prop("disabled", true);
             }
 
             });
         });
     </script>
 
-    <h1>Choose your favorite genres of movies to watch</h1>
+    <h1>What kinds of movies do you like?</h1>
+    <h2>Select at least 3 of your favorite genres of movies to watch</h2>
     <form action="main_page.php">
         <input type="checkbox" id="Action" name="Action" value="Action">
         <label for="Action"> Action</label><br>
@@ -91,7 +95,8 @@
         <input type="checkbox" id="Western" name="Western" value="Western">
         <label for="Western">Western</label><br>
 
-        <input type="submit" id = "subBtn" value="Submit">
+        <input type="submit" id = "subBtn" value="Submit" disabled= "true">
+
     </form>
 </body>
 </html>
