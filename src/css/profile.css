@@ -1,0 +1,37 @@
+html {
+  background: url('../images/bg.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
+body {
+  background: rgba(0, 0, 0, 0);
+}
+ 
+.profile{
+  color: bisque;
+  margin: auto;
+  width: 75%;
+  padding: 15px;
+}
+
+.wrapper{
+  border-radius: 15px;
+  background: rgba(0, 0, 0, .7);
+  padding: 15px;
+}
+
+h2 {
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+}
+
+h4 {
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}

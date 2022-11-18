@@ -1,0 +1,30 @@
+body {
+    background: url('../images/bg.jpg') no-repeat;
+    background-size: cover;
+}
+
+.checkcon {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    width: 550px;
+    background: rgba(0, 0, 0, .7);
+}
+
+.form-check {
+    font-size: 25px;
+    padding: 15px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

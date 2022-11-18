@@ -1,0 +1,41 @@
+.del-button {
+    margin: auto;
+    display: block;
+}
+
+html {
+    background: url('../images/bg.jpg') no-repeat center fixed;
+    background-size: cover;
+}
+
+body {
+    background: rgba(0, 0, 0, 0);
+}
+
+.table-container {
+    background: rgba(0, 0, 0, .7);
+    color: bisque;
+    margin: auto;
+    width: 75%;
+
+}
+
+p {
+    color: bisque;
+}
+
+h2 {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+}
+
+h3 {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+}
