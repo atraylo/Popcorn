@@ -3,6 +3,7 @@ require("../include_files/DBConn.php");
 
 if (isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['email'])) {
 
+    # User entered data
     $username = $_POST['user'];
     $pass_word = $_POST['pwd'];
     $email = $_POST['email'];
@@ -12,11 +13,12 @@ if (isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['email'])) {
         $sth = $dbh->prepare('INSERT INTO user_info (username,pass_word,email) VALUES (?,?,?)');
         $sth->execute(array($username, $pass_word, $email));
 
-        #Uncomment line below when used on actual site and comment line with localhost in header after.
-        #header("Location:https://pop-corn.azurewebsites.net/pages/profile_gen.php");
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['profilebool'] = false;
 
-        #Uncomment line below when using XAMPP during development and comment above line.
-        header("Location:http://localhost/root/pages/profile_gen.php");
+        header("Location:../pages/profile_gen.php");
 
     } catch (PDOException $e) {
 
@@ -39,15 +41,13 @@ if (isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['email'])) {
                 $em = "This username is in use already! Please try different one..";
             }else{
                 $em = "A user with this email already exists! Try signing in..";
-
             }
 
         }else{
-            $em = 'Error has occured. Please try again later: ';
-
+            $em = 'Error has occured. Please try again later.';
         }
 
-        header("Location:../pages/create_account.php?error=$em");
+        header("Location:../pages/create_account.php?error=" . $em);
     }
 }
 ?>

@@ -1,43 +1,43 @@
 <?php
-session_start();
-
 require("DBConn.php");
-
+require("profile_check.php");
 
 if (isset($_POST['user']) && isset($_POST['pwd'])) {
 
-    #User entered data
+    # User entered data
     $username = $_POST['user'];
     $pass_word = $_POST['pwd'];    
 
-    #Prep sql statments
+    # Prep sql statments
     $sth = $dbh->prepare('SELECT * FROM user_info WHERE username = ?');
     $sth->execute(array($username));
 
     $usercheck = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-    #Check if username exists in database
+    # Check if username exists in database
     if ($usercheck[0]['username'] == $username) {
 
-        #Check if password is correct
+        # Check if password is correct
         if ($usercheck[0]['pass_word'] == $pass_word) {
 
-            #Sign in
+            # Sign in, setting all necessary session variables, then running the profile check and 
+            # setting the return value to profilebool.
+            session_start();
+            $_SESSION['username'] = $usercheck[0]['username'];
+            $_SESSION['email'] = $usercheck[0]['email'];
+            $_SESSION['f-name'] = $usercheck[0]['f_name'];
+            $_SESSION['l-name'] = $usercheck[0]['l_name'];
+            $_SESSION['age'] = $usercheck[0]['age'];
 
-            #Uncomment line below when used on actual site and comment line with header after.
+            $_SESSION['profilebool'] = prof_check($_SESSION['username']);
             
-            #header("Location:https://pop-corn.azurewebsites.net/pages/homepage.html");
-            
-            #Uncomment line below when using XAMPP during development
-            header("Location:http://localhost/root/pages/PopcornProject/homepage.html");
+            header("Location: ../pages/homepage.php");
         } else {
-            $em = "Your passsword is incorrect..";
-
-            header("Location:../index.php?error=$em");    
+            $em = "Username or passsword is incorrect..";
+            header("Location:../pages/sign_in_page.php?error=" . $em);   
         }
     } else {
         $em = "That username does not exist..";
-
-        header("Location:../index.php?error=$em");      
+        header("Location:../pages/sign_in_page.php?error=" . $em);    
     }
 }
