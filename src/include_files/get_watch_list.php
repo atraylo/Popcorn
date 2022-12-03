@@ -1,6 +1,7 @@
 <?php
 require("DBConn.php");
-require("IMDB_api_trans.php"); 
+require("IMDB_api_trans.php");
+require("watchmode_trans.php");
 
 if(isset($_SESSION['username'])){
 
@@ -12,29 +13,43 @@ if(isset($_SESSION['username'])){
         $sth->execute([$username]);
 
         $result = $sth->fetchAll();
+
+        # Get row count
         $rownum = count($result);
 
         if($rownum < 1){
             echo '<h2>Nothing on your watch list yet!</h2> <h3>Try adding some movies to your watch list first!</h3>';
         }else{
-            #Echo html to the page with title info in proper places.
-
+            
+            # Echo html to the page with title info in proper places.
             echo '<div class=watch_table> <table class="table table-bordered"><tbody>';
 
+            /*	 
+		    Use if other api (IMDB API) calls run out and pictures/ plot details stop appearing for movies
+            To switch from IMDB to Watchmode:
+			    Replace $json = get_details($row['movie_id']); with $json = wtch_get_details($row['movie_id']);  
+			    replace $json['image'] with $json['poster']
+		    To switch the other direction, do the opposite.
+            Use the imdb api to get plot details if they dont show using watchmodes (plot_overview instead of plot when using watchmode)
+	        */
             foreach($result as $row) {
-                $json = get_details($row['movie_id']);
+                $json = wtch_get_details($row['movie_id']);
+                $imdbjson = get_details($row['movie_id']);
                 echo 
                 '<tr>' . 
                     '<td>' . 
                         '<div class="table-cell d-flex align-items-center">
-                            <img class="poster" src="' . $json['image'] . '"
+                            <img class="poster" src="' . $json['poster'] . '"
                             style= "width: 145px; height: 145px"/>
                         </div>
                     </td>
                     <td>
                         <div class= "ms-3">
                             <p class= "title fw-bold mb-0">' . $json['title'] . '</p>
-                            <p class="plot text-warning mb-0">' . $json['plot']  . '</p>
+                            <p class="plot text-warning mb-0">' . $imdbjson['plot']  . '</p>
+                            <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#linkModal" value="'. $row['movie_id'].'">
+                                Where can I watch?
+                            </button>
                         </div>
                     </td>
                     <td>
@@ -55,6 +70,6 @@ if(isset($_SESSION['username'])){
     }
 
 }else{
-    header("Location:../pages/sign_in.php");
+    header("Location:../pages/sign_in_page.php");
 }
 ?>

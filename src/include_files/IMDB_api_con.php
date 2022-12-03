@@ -1,11 +1,13 @@
 <?php
 
-//Makes calls to api based on url given as paramurl. Returns JSON as response
+/* Makes calls to api based on url given as imdb ID. Returns JSON as response
+   Replacement APIKEYS in case images stop appearing: k_rg8j0aoo, k_c4586ape, k_2552yyzp, k_2e81os19
+   */
 function imdb_api_call($imdb_id){
 
 	$curl = curl_init();
 
-	$APIKey = "k_rg8j0aoo"; #"k_c4586ape";
+	$APIKey = "k_2e81os19";
      
 	curl_setopt_array($curl, array(
 		CURLOPT_URL => "https://imdb-api.com/en/API/Title/" . $APIKey . "/" .  $imdb_id,

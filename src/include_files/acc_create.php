@@ -1,5 +1,5 @@
 <?php
-require("../include_files/DBConn.php");
+require("DBConn.php");
 
 if (isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['email'])) {
 

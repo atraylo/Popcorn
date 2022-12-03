@@ -13,7 +13,7 @@ if(isset($_GET['check'])){
     try {
         foreach($selections as $genre){
             # SQL Query to Database for each checkbox filled by user
-            $sth = $dbh->prepare('INSERT INTO user_profiles (username,pref_genre) VALUES (?,?)');
+            $sth = $dbh->prepare('INSERT INTO user_profiles (username,genre_id) VALUES (?,?)');
             $sth->execute(array($username, $genre));   
         }
 
