@@ -49,112 +49,92 @@ if ($_SESSION['profilebool']) {
         <!-- Form -->
         <form class="form-check form-check-inline" action="../include_files/profile_ins.php">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Action">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="1">
                 <label class="form-check-label" for="Action"> Action</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Adventure">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="2">
                 <label class="form-check-label" for="Adventure"> Adventure</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Animation">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="3">
                 <label class="form-check-label" for="Animation">Animation</label><br>
             </div>
 
-            <!-- <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Biography">
-                <label class="form-check-label" for="Biography">Biography</label><br>
-            </div> -->
-
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Comedy">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="4">
                 <label class="form-check-label" for="Comedy">Comedy</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Crime">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="5">
                 <label class="form-check-label" for="Crime">Crime</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Documentary">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="6">
                 <label class="form-check-label" for="Documentary">Documentary</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Drama">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="7">
                 <label class="form-check-label" for="Drama">Drama</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Family">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="8">
                 <label class="form-check-label" for="Family">Family</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Fantasy">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="9">
                 <label class="form-check-label" for="Fantasy">Fantasy</label><br>
             </div>
 
-            <!-- <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Film-Noir">
-                <label class="form-check-label" for="Film-Noir">Film-Noir</label><br>
-            </div> -->
-
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="History">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="10">
                 <label class="form-check-label" for="History">History</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Horror">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="11">
                 <label class="form-check-label" for="Horror">Horror</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Music">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="12">
                 <label class="form-check-label" for="Music">Music</label><br>
             </div>
 
-            <!-- <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Musical">
-                <label class="form-check-label" for="Musical">Musical</label><br>
-            </div> -->
-
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Mystery">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="13">
                 <label class="form-check-label" for="Mystery">Mystery</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Romance">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="14">
                 <label class="form-check-label" for="Romance">Romance</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Sci-Fi">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="15">
                 <label class="form-check-label" for="Sci-Fi">Sci-Fi</label><br>
             </div>
 
-            <!-- <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Sport">
-                <label class="form-check-label" for="Sport">Sport</label><br>
-            </div> -->
-
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Thriller">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="17">
                 <label class="form-check-label" for="Thriller">Thriller</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="War">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="18">
                 <label class="form-check-label" for="War">War</label><br>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="Western">
+                <input class="form-check-input" type="checkbox" id="checkbox" name="check[]" value="19">
                 <label class="form-check-label" for="Western">Western</label><br>
             </div>
 

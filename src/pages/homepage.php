@@ -15,17 +15,18 @@ if (!$_SESSION['profilebool']) {
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSS -->
-    <link href="../css/styles.css" rel="stylesheet">
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
     <!-- ajax JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- CSS -->
+    <link type="text/css" href="../css/styles.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <ul class="navbar-nav">
@@ -56,25 +57,31 @@ if (!$_SESSION['profilebool']) {
         </div>
     </nav>
 
-    <h1 class="heading">HOMEPAGE. Welcome <?php echo $_SESSION['username']; ?></h1>
+    <h1 class="heading">Welcome to Popcorn! Hello <?php echo $_SESSION['username']; ?></h1>
 
+    <!-- Error/Success text boxes -->
     <div>
-        <!-- Error text boxes -->
         <?php if (isset($_GET['error'])) { ?>
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <?php echo htmlspecialchars($_GET['error']); ?>
+                <button type="button" class="close" data-mdb-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         <?php } ?>
 
         <?php if (isset($_GET['succ'])) { ?>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo htmlspecialchars($_GET['succ']); ?>
+                <button type="button" class="close" data-mdb-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         <?php } ?>
     </div>
 
+    <!-- Genre and streaming platform selection container -->
     <div class="plat-select container">
-
         <select class="form-select form-select-lg mb-3" id="genre" name="genre">
             <option value='' selected>Genre</option>
             <option value='1'>Action</option>
@@ -108,24 +115,25 @@ if (!$_SESSION['profilebool']) {
             <option value='389'>Peacock</option>
             <option value='371'>Apple Tv Plus</option>
         </select>
-
         <button id="submit-btn">Submit</button>
     </div>
 
+    <!-- Movie selection list container -->
     <div id="movies">
-
+        <?php
+        require("../include_files/pop_home.php")
+        ?>
     </div>
 
-    <script src="../include_files/script.js"></script>
     <script>
         $(document).ready(function() {
             $('#submit-btn').click(function() {
                 $('#movies').html("loading..");
                 if (
-                    ($('#genre').val() != "") &&
+                    ($('#genre').val() != "") ||
                     ($('#platform').val() != '')
                 ) {
-                    $.post('watchmode_test.php', // url
+                    $.post('../include_files/sort_home.php', // url
                         {
                             genre: $('#genre').val(),
                             platform: $('#platform').val()
