@@ -35,3 +35,21 @@ h4 {
   text-align: center;
   padding: 20px;
 }
+a:hover{
+		animation: change 2s ease-in-out 0s 1 alternate forwards;	
+	}
+	@keyframes change {	
+		0% {
+			color: rgba(255,255,255,1)
+		}
+		30%{
+			color:rgba(170, 170, 255, 0.3)
+		}
+		50% {
+			color: rgba(0, 170, 255, 0.5)
+		}	
+		80% {
+			color: rgba(255, 170, 255, 0.8)
+		}	
+		100% {color: rgba(7, 7, 7, 1.0);}	
+	}
